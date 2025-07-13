@@ -2,10 +2,8 @@ import { useEffect, useRef, useState, useTransition } from 'react';
 import { SearchProduct } from './ProductUtility';
 
 const ProductSearch = ({ setData }) => {
-    const inputRef = useRef(null);
+    const inputRef = useRef();
     const [transition, startTransition] = useTransition();
-    const [focus, setFocus] = useState(Boolean);
-
     function handleSearch() {
         let id = null;
         return () => {
@@ -15,16 +13,15 @@ const ProductSearch = ({ setData }) => {
                 let searchText = inputRef.current.value;
                 startTransition(async () => {
                     await SearchProduct(searchText).then(response => {
-                        setFocus(!focus)
-                        setData(response)
+                        setData(response) 
                     })
                 });
             }, 500)
         }
-    }
+    }    
     useEffect(() => {
-        inputRef.current.focus();
-    }, [focus]);
+        inputRef.current.focus(); 
+    }, [transition])
     useEffect(() => {
         inputRef.current.focus();
         ActionClearTextInput();
@@ -36,12 +33,10 @@ const ProductSearch = ({ setData }) => {
     }
     return (
         <div className='row' style={{ width: '800' }}>
-            <div className='col-sm-8'>
+            <div className='col-sm-12' style={{ textAlign: "right" }}>
                 <input ref={inputRef} type="text" name="searchTextInput" placeholder='Enter product name'
-                    disabled={transition} onChange={handleSearch()}></input></div>
-            <div className='col-sm-1'>
-                &nbsp;</div>
-            <div className='col-sm-3'>
+                    disabled={transition} onChange={handleSearch()}></input>
+                &nbsp;
                 <button name="clearTextInput" onClick={ActionClearTextInput} className='btn btn-secondary'>Clear</button>
             </div>
         </div >

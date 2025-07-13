@@ -1,3 +1,5 @@
+"use server";
+
 export const productData =
   [
     {
@@ -13,7 +15,7 @@ export const productData =
       { price: "$1", stocked: true, name: "Peas" }]
     }
   ];
-
+/*
 export async function SearchProduct(searchText) {
   return new Promise((res) => {
     let results = []
@@ -28,4 +30,18 @@ export async function SearchProduct(searchText) {
       res(results);
     }, 500)
   })
+}*/
+
+export const cellStyle = { textAlign: "left" }
+export async function SearchProduct(searchText) {
+  "use server";
+  let results = []
+  productData.filter(g => {
+    let filteredProducts = g.products.filter(p => !searchText
+      || searchText.trim() === ''
+      || p.name.trim().toUpperCase().startsWith(searchText.trim().toUpperCase()))
+    if (filteredProducts.length > 0)
+      results.push({ ...g, products: filteredProducts })
+  })
+  return results;
 }
