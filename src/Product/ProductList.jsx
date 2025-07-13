@@ -1,8 +1,10 @@
 import { cellStyle } from "./ProductUtility"
 const DataHeader = ({ category }) => {
-    return <i><div className="row" style={{ textAlign: "left", 'borderBottom': '1px solid green' }}>
-        <div className="col-sm-12">({category})</div>
-    </div></i>
+    return <i>
+        <div className="row" style={{ textAlign: "left", 'borderBottom': '1px solid green' }}>
+            <div className="col-sm-12" style={{ color: 'orange' }}>({category})</div>
+        </div>
+    </i>
 }
 const DataRow = ({ product }) => {
     return <div className="row">
@@ -13,7 +15,7 @@ const DataRow = ({ product }) => {
 }
 
 export const TopHeader = () => {
-    return <div className="row" style={{ border: '1px solid blue', textAlign: "left" }}>
+    return <div className="row" style={{ borderTop: '1px solid blue', borderBottom: '1px solid blue', textAlign: "left" }}>
         <div className="col-sm-7" style={cellStyle}>Name</div>
         <div className="col-sm-2" style={cellStyle}>Price</div>
         <div className="col-sm-3" style={cellStyle}>In Stock</div>
