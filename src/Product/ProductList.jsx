@@ -16,7 +16,7 @@ export const TopHeader = () => {
     return <div className="row" style={{ border: '1px solid blue', textAlign: "left" }}>
         <div className="col-sm-7" style={cellStyle}>Name</div>
         <div className="col-sm-2" style={cellStyle}>Price</div>
-        <div className="col-sm-3" style={cellStyle}>Available</div>
+        <div className="col-sm-3" style={cellStyle}>In Stock</div>
     </div>
 }
 
